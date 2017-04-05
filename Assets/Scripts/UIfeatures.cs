@@ -10,7 +10,7 @@ public class UIfeatures : MonoBehaviour {
 	public GameObject playtext;
 	public GameObject date;
 	public GameObject ff;
-	public GameObject slow;
+
 
 	public GameObject budgetUI;
 	public GameObject statsUI;

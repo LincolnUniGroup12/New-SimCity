@@ -6,7 +6,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{399092E2-1A5D-32A8-8750-3F20AAE70DAB}</ProjectGuid>
+    <ProjectGuid>{4CEE00BC-E8DE-3B43-0B7F-2C241763DD9B}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -53,7 +53,6 @@
      <Compile Include="Assets\Scripts\InudstrialStatsController.cs" />
      <Compile Include="Assets\Scripts\Menu.cs" />
      <Compile Include="Assets\Scripts\MusicManager.cs" />
-     <Compile Include="Assets\Scripts\TileMapInspector.cs" />
      <Compile Include="Assets\Scripts\TileMapMouse.cs" />
      <Compile Include="Assets\Scripts\UIfeatures.cs" />
      <Compile Include="Assets\Scripts\camRotate.cs" />
@@ -91,7 +90,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
-      <Project>{53869F08-9946-1092-641E-A5AABFB769CC}</Project>      <Name>Assembly-CSharp-firstpass</Name>    </ProjectReference>
+      <Project>{A801E29F-2332-0FDA-0D6C-CC2395A851EC}</Project>      <Name>Assembly-CSharp-firstpass</Name>    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
