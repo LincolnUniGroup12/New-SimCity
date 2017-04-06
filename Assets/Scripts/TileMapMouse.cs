@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(tileMap))]
-public class TileMapMouse : MonoBehaviour {
+public class TileMapMouse : MonoBehaviour
+{
 
     tileMap _tileMap;
     public GameObject House1;
@@ -14,30 +15,42 @@ public class TileMapMouse : MonoBehaviour {
     bool select3;
 
     Vector3 currentTileCoord;
+    Vector3 currentVisualCoord;
 
-    public Transform selectionCube;
+    public GameObject selectionHouse;
+    public GameObject selectionCommerce;
+    public GameObject selectionIndustrial;
     void Start()
     {
         _tileMap = GetComponent<tileMap>();
+        selectionHouse.SetActive(false);
+        selectionCommerce.SetActive(false);
+        selectionIndustrial.SetActive(false);
     }
-	// Update is called once per frame
-	void Update () {
+    // Update is called once per frame
+    void Update()
+    {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hitInfo;
-        if ( GetComponent<Collider>().Raycast(ray, out hitInfo, Mathf.Infinity))
+        if (GetComponent<Collider>().Raycast(ray, out hitInfo, Mathf.Infinity))
         {
             int x = Mathf.FloorToInt(hitInfo.point.x / _tileMap.tileSize);
             int z = Mathf.FloorToInt(hitInfo.point.z / _tileMap.tileSize);
-           // Debug.Log("Tile: " + x + "," + z);
+            // Debug.Log("Tile: " + x + "," + z);
 
             currentTileCoord.x = x;
             currentTileCoord.z = z;
 
-            selectionCube.transform.position = currentTileCoord;
+            currentVisualCoord.x = currentTileCoord.x + 0.5f;
+            currentVisualCoord.z = currentTileCoord.z + 0.5f;
+
+            selectionHouse.transform.position = currentVisualCoord;
+            selectionCommerce.transform.position = currentVisualCoord;
+            selectionIndustrial.transform.position = currentVisualCoord;
         }
         else
         {
-          
+
         }
 
         if (Input.GetMouseButtonDown(0))
@@ -84,5 +97,54 @@ public class TileMapMouse : MonoBehaviour {
             Debug.Log("House 3 selected");
 
         }
+
+        if (Input.GetMouseButtonDown(1))
+        {
+            select1 = false;
+            select2 = false;
+            select3 = false;
+
+            selectionHouse.SetActive(false);
+            selectionCommerce.SetActive(false);
+            selectionIndustrial.SetActive(false);
+        }
     }
+
+
+    public void SelectHouse()
+    {
+        select1 = true;
+        select2 = false;
+        select3 = false;
+
+        selectionHouse.SetActive(true);
+        selectionCommerce.SetActive(false);
+        selectionIndustrial.SetActive(false);
+        Debug.Log("House 1 selected");
+    }
+    public void SelectCommerce()
+    {
+        select1 = false;
+        select2 = true;
+        select3 = false;
+
+        selectionHouse.SetActive(false);
+        selectionCommerce.SetActive(true);
+        selectionIndustrial.SetActive(false);
+
+        Debug.Log("House 2 selected");
+    }
+    public void SelectIndustrial()
+    {
+        select1 = false;
+        select2 = false;
+        select3 = true;
+
+        selectionHouse.SetActive(false);
+        selectionCommerce.SetActive(false);
+        selectionIndustrial.SetActive(true);
+
+        Debug.Log("House 3 selected");
+    }
+
 }
