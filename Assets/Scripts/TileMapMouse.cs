@@ -39,7 +39,9 @@ public class TileMapMouse : MonoBehaviour
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hitInfo;
-        if (GetComponent<Collider>().Raycast(ray, out hitInfo, Mathf.Infinity))
+		RaycastHit[] hits;
+		hits = Physics.RaycastAll (ray, Mathf.Infinity);
+		if (GetComponent<Collider>().Raycast(ray, out hitInfo, Mathf.Infinity))
         {
             int x = Mathf.FloorToInt(hitInfo.point.x / _tileMap.tileSize);
             int z = Mathf.FloorToInt(hitInfo.point.z / _tileMap.tileSize);
@@ -51,39 +53,52 @@ public class TileMapMouse : MonoBehaviour
             currentVisualCoord.x = currentTileCoord.x + 0.5f;
             currentVisualCoord.z = currentTileCoord.z + 0.5f;
 
-            selectionHouse.transform.position = currentVisualCoord;
-            selectionCommerce.transform.position = currentVisualCoord;
-            selectionIndustrial.transform.position = currentVisualCoord;
-			selectionCityhall.transform.position = currentVisualCoord;
+       
 
-			Debug.Log (hitInfo.collider.name);
-			if (hitInfo.collider.gameObject.tag == "Building") {
-				
-				Debug.Log ("Clickkeeyyyyyyy");
-				if (deleting) {
+
+
+			if (hits.Length == 2) {
+
+					if (deleting) {
+						if (Input.GetMouseButtonDown (0)) {
+							Destroy (hitInfo.collider.gameObject);
+						}
+					}
+				} 
+				else {
+				selectionHouse.transform.position = currentVisualCoord;
+				selectionCommerce.transform.position = currentVisualCoord;
+				selectionIndustrial.transform.position = currentVisualCoord;
+				selectionCityhall.transform.position = currentVisualCoord;
 					if (Input.GetMouseButtonDown (0)) {
-						Destroy(hitInfo.collider.gameObject);
+
+						Debug.Log ("Tile: " + currentTileCoord.x + "," + currentTileCoord.z);
+						if (select1) {
+							Instantiate (residential, new Vector3 (currentTileCoord.x + 0.5f, 0.0f, currentTileCoord.z + 0.5f), Quaternion.identity);
+						} else if (select2) {
+							Instantiate (commercial, new Vector3 (currentTileCoord.x + 0.5f, 0.0f, currentTileCoord.z + 0.5f), Quaternion.identity);
+						} else if (select3) {
+							Instantiate (industrial, new Vector3 (currentTileCoord.x + 0.5f, 0.0f, currentTileCoord.z + 0.5f), Quaternion.identity);
+						} else if (select4) {
+							Instantiate (cityhall, new Vector3 (currentTileCoord.x + 0.5f, 0.0f, currentTileCoord.z + 0.5f), Quaternion.identity);
+						}
+
 					}
 				}
+
+
+
+
+		
+			if (hitInfo.collider.gameObject.tag == "Building") {
+				
+			
 
 			}
 			else {
 				
 
-				if (Input.GetMouseButtonDown (0)) {
-					
-					Debug.Log ("Tile: " + currentTileCoord.x + "," + currentTileCoord.z);
-					if (select1) {
-						Instantiate (residential, new Vector3 (currentTileCoord.x + 0.5f, 0.0f, currentTileCoord.z + 0.5f), Quaternion.identity);
-					} else if (select2) {
-						Instantiate (commercial, new Vector3 (currentTileCoord.x + 0.5f, 0.0f, currentTileCoord.z + 0.5f), Quaternion.identity);
-					} else if (select3) {
-						Instantiate (industrial, new Vector3 (currentTileCoord.x + 0.5f, 0.0f, currentTileCoord.z + 0.5f), Quaternion.identity);
-					} else if (select4) {
-						Instantiate (cityhall, new Vector3 (currentTileCoord.x + 0.5f, 0.0f, currentTileCoord.z + 0.5f), Quaternion.identity);
-					}
-
-				}
+		
 			}
         }
     
