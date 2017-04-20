@@ -59,7 +59,7 @@ public class cityStats : MonoBehaviour {
 
 		happinessUI.GetComponent<Text> ().text = "Happiness: " + happiness; 
 		popUI.GetComponent<Text> ().text = "Population: " + population; 
-		emprateUI.GetComponent<Text> ().text = "Employment Rate: " + percEmployed; 
+		emprateUI.GetComponent<Text> ().text = "Employment Rate: " + percEmployed + "%"; 
 
 	}
 

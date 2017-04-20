@@ -2,12 +2,12 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\TileMapMouse.cs">
     <Files>
-      <File FileName="Assets\Scripts\Menu.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\UIfeatures.cs" Line="100" Column="28" />
-      <File FileName="Assets\Scripts\cityStats.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\TileMapMouse.cs" Line="59" Column="38" />
-      <File FileName="Assets\Scripts\cameraControl1.cs" Line="14" Column="3" />
-      <File FileName="Assets\Scripts\cameraControl.cs" Line="14" Column="1" />
+      <File FileName="Assets\Scripts\Menu.cs" Line="87" Column="38" />
+      <File FileName="Assets\Scripts\UIfeatures.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\cityStats.cs" Line="62" Column="82" />
+      <File FileName="Assets\Scripts\TileMapMouse.cs" Line="78" Column="28" />
+      <File FileName="Assets\Scripts\cameraControl1.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\cameraControl.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
