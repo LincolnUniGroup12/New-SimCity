@@ -5,28 +5,28 @@ using UnityEngine.UI;
 
 public class cityStats : MonoBehaviour {
 
+	public float money;
+	public float dayCounter = 0;
 
-	public float population = 1000;
-	public float availableJobs = 700;
+	public float population = 0;
+	public float availableJobs = 0;
 	public int averageIncome = 20000;
 
 	public float taxRate = 0;
-	public float healthcareSpending = 0;
-	public float educationSpending = 0;
+	public float servicesSpending = 0;
 	public float happiness = 50;
 
 
 	public GameObject taxSlider;
 	public GameObject taxlevel;
-	public GameObject healthSlider;
-	public GameObject healthlevel;
-	public GameObject educationSlider;
-	public GameObject educationlevel;
+	public GameObject servicesSlider;
+	public GameObject servicesLevel;
+
 
 
 	public GameObject overallProfit;
 	public float profit = 0;
-	public float percEmployed;
+	public float percEmployed = 0;
 	public float workingPopulation;
 	public float overallIncome;
 	public float overallIncomeTax;
@@ -39,22 +39,45 @@ public class cityStats : MonoBehaviour {
 	public GameObject emprateUI;
 
 
-
+	public bool runOnce = false;
 	void Start() {
 		taxRate = 10;
-		educationSpending = 100;
-		healthcareSpending = 100;
+		servicesSpending = 200;
 	}
 
 
 	void Update() {
+
+		if(runOnce) {
+		if(GetComponent<UIfeatures>().day == 1) {
+			money += profit;
+				runOnce = false;
+		}
+		}
+
+		if(GetComponent<UIfeatures>().day == 2) {
+
+			runOnce = true;
+		}
+
+
+		if(population > 0) {
+			if(availableJobs <= population) {
 		percEmployed = availableJobs / population;
+			}
+
 		workingPopulation = population * percEmployed;
 		overallIncome = workingPopulation * averageIncome;
 		overallIncomeTax = overallIncome * (taxRate / 100);
-		overallExpenses = healthcareSpending + educationSpending;
-		profit = overallIncomeTax - overallExpenses;
-
+			profit = overallIncomeTax - servicesSpending;
+		}
+		else {
+			percEmployed = 0;
+			workingPopulation = 0;
+			overallIncome = 0;
+			overallIncomeTax = 0;
+			profit = 0 - servicesSpending;
+		}
 		overallProfit.GetComponent<Text> ().text = "£" + profit;
 
 		happinessUI.GetComponent<Text> ().text = "Happiness: " + happiness; 
@@ -71,14 +94,11 @@ public class cityStats : MonoBehaviour {
 
 
 	public void ChangeHealthRate() {
-		healthcareSpending = healthSlider.GetComponent<Slider>().value;
-		healthlevel.GetComponent<Text> ().text =  "£" + healthcareSpending;
+		servicesSpending = servicesSlider.GetComponent<Slider>().value;
+		servicesLevel.GetComponent<Text> ().text =  "£" + servicesSpending;
 	}
 
-	public void ChangeEducationRate() {
-		educationSpending = educationSlider.GetComponent<Slider>().value;
-		educationlevel.GetComponent<Text> ().text = "£" + educationSpending;
-	}
+
 
 	public void OpenBudget() {
 		budgetpanel.SetActive(true);

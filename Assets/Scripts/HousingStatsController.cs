@@ -31,7 +31,7 @@ public class HousingStatsController : MonoBehaviour {
         if (this.gameObject.activeInHierarchy)
         {
             CityStats.population += Residents;
-            CityStats.availableJobs += AbleToWork;
+           
         }
     }
 	
