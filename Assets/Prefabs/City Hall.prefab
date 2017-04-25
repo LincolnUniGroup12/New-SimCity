@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4446375397300692}
   - component: {fileID: 95518180040626858}
   - component: {fileID: 65508737734550384}
+  - component: {fileID: 114495174899173942}
   m_Layer: 0
   m_Name: City Hall
   m_TagString: Building
@@ -277,3 +278,15 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114495174899173942
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1162263317014176}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62a24ceef92fe644687ed79085d53279, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scripts: {fileID: 1000012688196020, guid: 0049bec277ff85c41baeb79670ec4e92, type: 2}

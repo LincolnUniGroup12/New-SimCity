@@ -8,7 +8,7 @@ public class HousingStatsController : MonoBehaviour {
     public float Residents;
     public float AbleToWork;
     public float Children;
-
+	public float cost;
     // Mood factors
     public float HappinessGain;
 
@@ -19,6 +19,10 @@ public class HousingStatsController : MonoBehaviour {
 	void Start ()
     {
         CityStats = FindObjectOfType<cityStats>();
+		GameObject scripts = GameObject.Find("_Scripts");
+		scripts.GetComponent<cityStats>().money -= cost;
+		scripts.GetComponent<cityStats>().happiness -= 1;
+
 
         // Generate a random amount of residents per household
         Residents = Random.Range(2, 6);

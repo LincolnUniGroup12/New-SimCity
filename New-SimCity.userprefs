@@ -1,15 +1,16 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\cityStats.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\InudstrialStatsController.cs">
     <Files>
-      <File FileName="Assets\Scripts\Menu.cs" Line="87" Column="38" />
+      <File FileName="Assets\Scripts\Menu.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\UIfeatures.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\cityStats.cs" Line="72" Column="49" />
-      <File FileName="Assets\Scripts\TileMapMouse.cs" Line="78" Column="28" />
+      <File FileName="Assets\Scripts\cityStats.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\TileMapMouse.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\cameraControl1.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\cameraControl.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\HousingStatsController.cs" Line="34" Column="12" />
-      <File FileName="Assets\Scripts\CommercialStatsController.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\HousingStatsController.cs" Line="11" Column="2" />
+      <File FileName="Assets\Scripts\CommercialStatsController.cs" Line="9" Column="20" />
+      <File FileName="Assets\Scripts\InudstrialStatsController.cs" Line="9" Column="20" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

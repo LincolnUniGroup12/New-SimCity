@@ -292,4 +292,5 @@ MonoBehaviour:
   Residents: 0
   AbleToWork: 0
   Children: 0
+  cost: 100
   HappinessGain: 0

@@ -59,6 +59,7 @@
      <Compile Include="Assets\Scripts\camera.cs" />
      <Compile Include="Assets\Scripts\cameraControl.cs" />
      <Compile Include="Assets\Scripts\cameraControl1.cs" />
+     <Compile Include="Assets\Scripts\cityHall.cs" />
      <Compile Include="Assets\Scripts\cityStats.cs" />
      <Compile Include="Assets\Scripts\hoverOver.cs" />
      <Compile Include="Assets\Scripts\main.cs" />

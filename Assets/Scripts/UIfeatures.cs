@@ -14,7 +14,6 @@ public class UIfeatures : MonoBehaviour {
 
 	public GameObject budgetUI;
 	public GameObject statsUI;
-	public GameObject citizenUI;
 
 	public GameObject residentialButton;
 	public GameObject commercialButton;
@@ -99,19 +98,19 @@ public class UIfeatures : MonoBehaviour {
 
 	public void OpenBudget() {
 		budgetUI.SetActive (true);
-		citizenUI.SetActive (false);
+
 		statsUI.SetActive (false);
 	}
 
 	public void OpenStats() {
 		budgetUI.SetActive (false);
-		citizenUI.SetActive (false);
+
 		statsUI.SetActive (true);
 	}
 
 	public void OpenCitizens() {
 		budgetUI.SetActive (false);
-		citizenUI.SetActive (true);
+
 		statsUI.SetActive (false);
 	}
 

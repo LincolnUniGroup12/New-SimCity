@@ -289,5 +289,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5df8512d85273994089e1efdb62c51b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  JobsProvided: 70
+  JobsProvided: 30
   HappinessGain: -10
+  cost: 100

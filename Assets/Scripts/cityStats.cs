@@ -48,6 +48,17 @@ public class cityStats : MonoBehaviour {
 
 	void Update() {
 
+		if(happiness <= 30) {
+
+			population -= 0.01f * Time.deltaTime;
+		}
+
+		if(happiness >= 60) {
+			population += 0.01f * Time.deltaTime;
+
+		}
+
+
 		if(runOnce) {
 		if(GetComponent<UIfeatures>().day == 1) {
 			money += profit;
@@ -65,6 +76,9 @@ public class cityStats : MonoBehaviour {
 			if(availableJobs <= population) {
 		percEmployed = availableJobs / population;
 			}
+			else {
+				percEmployed = 1;
+			}
 
 		workingPopulation = population * percEmployed;
 		overallIncome = workingPopulation * averageIncome;
@@ -81,8 +95,8 @@ public class cityStats : MonoBehaviour {
 		overallProfit.GetComponent<Text> ().text = "£" + profit;
 
 		happinessUI.GetComponent<Text> ().text = "Happiness: " + happiness; 
-		popUI.GetComponent<Text> ().text = "Population: " + population; 
-		emprateUI.GetComponent<Text> ().text = "Employment Rate: " + percEmployed + "%"; 
+		popUI.GetComponent<Text> ().text = "Population: " + (int)population; 
+		emprateUI.GetComponent<Text> ().text = "Employment Rate: " + percEmployed * 100 + "%"; 
 
 	}
 
