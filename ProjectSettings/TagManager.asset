@@ -5,6 +5,11 @@ TagManager:
   serializedVersion: 2
   tags:
   - Building
+  - TileMap
+  - CityHall
+  - Commercial
+  - Industrial
+  - Residential
   layers:
   - Default
   - TransparentFX

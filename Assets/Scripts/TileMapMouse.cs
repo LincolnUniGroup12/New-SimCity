@@ -5,7 +5,8 @@ using UnityEngine;
 [RequireComponent(typeof(tileMap))]
 public class TileMapMouse : MonoBehaviour
 {
-
+    private cityStats CityStats;
+    private GameObject scripts;
     tileMap _tileMap;
     public GameObject residential;
     public GameObject commercial;
@@ -34,6 +35,8 @@ public class TileMapMouse : MonoBehaviour
         selectionCommerce.SetActive(false);
         selectionIndustrial.SetActive(false);
 		selectionCityhall.SetActive (false);
+        CityStats = FindObjectOfType<cityStats>();
+        scripts = GameObject.Find("_Scripts");
     }
     // Update is called once per frame
     void Update()
@@ -61,8 +64,40 @@ public class TileMapMouse : MonoBehaviour
 
 				if (deleting) {
 					if (Input.GetMouseButtonDown (0)) {
-						Destroy (hitInfo.collider.gameObject);
-					}
+                        if(hits[1].collider.gameObject.tag != "TileMap")
+                        {
+                            Destroy(hits[1].collider.gameObject);
+                        }
+                        if (hits[1].collider.gameObject.tag == "CityHall")
+                        {
+                            scripts.GetComponent<cityStats>().happiness -= 10;
+                        }
+                        else if (hits[1].collider.gameObject.tag == "Commercial")
+                        {
+                            scripts.GetComponent<cityStats>().availableJobs -= 50;
+                            scripts.GetComponent<cityStats>().happiness += 1;
+                        }
+                        else if (hits[1].collider.gameObject.tag == "Industrial")
+                        {
+                            scripts.GetComponent<cityStats>().availableJobs -= 50;
+                            scripts.GetComponent<cityStats>().happiness += 1;
+                        }
+                        else if (hits[1].collider.gameObject.tag == "Residential")
+                        {
+                            scripts.GetComponent<cityStats>().happiness += 1;
+                         
+
+
+                            scripts.GetComponent<cityStats>().population -= hits[1].collider.gameObject.GetComponent<HousingStatsController>().Residents;
+                            scripts.GetComponent<cityStats>().workingPopulation -= hits[1].collider.gameObject.GetComponent<HousingStatsController>().AbleToWork;
+                            if (scripts.GetComponent<cityStats>().population < 0)
+                            {
+                                scripts.GetComponent<cityStats>().population = 0;
+                            }
+                        }
+
+
+                    }
 				}
 			} else {
 				selectionHouse.transform.position = currentVisualCoord;
@@ -113,10 +148,25 @@ public class TileMapMouse : MonoBehaviour
 				selectionCommerce.SetActive (false);
 				selectionIndustrial.SetActive (false);
 				selectionCityhall.SetActive (false);
+                deleting = false;
 			}
 		}
     }
 
+    public void DeleteMode()
+    {
+        select1 = false;
+        select2 = false;
+        select3 = false;
+        select4 = false;
+        deleting = true;
+        selected = -1;
+        selectionHouse.SetActive(false);
+        selectionCommerce.SetActive(false);
+        selectionIndustrial.SetActive(false);
+        selectionCityhall.SetActive(false);
+        Debug.Log("Delete mode activated");
+    }
 
     public void SelectHouse()
     {
@@ -124,7 +174,8 @@ public class TileMapMouse : MonoBehaviour
         select2 = false;
         select3 = false;
 		select4 = false;
-		selected = -1;
+        deleting = false;
+        selected = -1;
         selectionHouse.SetActive(true);
         selectionCommerce.SetActive(false);
         selectionIndustrial.SetActive(false);
@@ -133,6 +184,7 @@ public class TileMapMouse : MonoBehaviour
     }
     public void SelectCommerce()
     {
+        deleting = false;
         select1 = false;
         select2 = true;
         select3 = false;
@@ -146,6 +198,7 @@ public class TileMapMouse : MonoBehaviour
     }
     public void SelectIndustrial()
     {
+        deleting = false;
         select1 = false;
         select2 = false;
         select3 = true;
@@ -160,7 +213,8 @@ public class TileMapMouse : MonoBehaviour
 
 	public void SelectCityHall()
 	{
-		select1 = false;
+        deleting = false;
+        select1 = false;
 		select2 = false;
 		select3 = false;
 		select4 = true;
@@ -172,7 +226,8 @@ public class TileMapMouse : MonoBehaviour
 		Debug.Log("House 3 selected");
 	}
 	public void SelectSmall(){
-		select1 = false;
+        deleting = false;
+        select1 = false;
 		select2 = false;
 		select3 = false;
 		select4 = false;
@@ -183,7 +238,8 @@ public class TileMapMouse : MonoBehaviour
 		selectionCityhall.SetActive (false);
 	}
 	public void SelectMedium(){
-		select1 = false;
+        deleting = false;
+        select1 = false;
 		select2 = false;
 		select3 = false;
 		select4 = false;
@@ -194,7 +250,8 @@ public class TileMapMouse : MonoBehaviour
 		selectionCityhall.SetActive (false);
 	}
 	public void SelectLarge(){
-		select1 = false;
+        deleting = false;
+        select1 = false;
 		select2 = false;
 		select3 = false;
 		select4 = false;
