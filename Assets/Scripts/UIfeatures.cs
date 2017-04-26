@@ -20,8 +20,12 @@ public class UIfeatures : MonoBehaviour {
 	public GameObject industrialButton;
 	public GameObject cityhallButton;
 
-	public bool zonesShowing = false;
+	public GameObject smallButton;
+	public GameObject mediumButton;
+	public GameObject largeButton;
 
+	public bool zonesShowing = false;
+	public bool roadsShowing = false;
 
 	public float dayFloat;
 	public int day = 1;
@@ -129,6 +133,12 @@ public class UIfeatures : MonoBehaviour {
 			zonesShowing = false;
 
 		}
+	}
+	public void ToggleRoads(){
+		roadsShowing = !roadsShowing;
+		smallButton.SetActive (roadsShowing);
+		mediumButton.SetActive (roadsShowing);
+		largeButton.SetActive (roadsShowing);
 	}
 
 

@@ -15,7 +15,8 @@ public class TileMapMouse : MonoBehaviour
     bool select2;
     bool select3;
 	bool select4;
-
+	int selected;
+	public RoadControllerRenderer controller;
     Vector3 currentTileCoord;
     Vector3 currentVisualCoord;
 
@@ -41,17 +42,16 @@ public class TileMapMouse : MonoBehaviour
         RaycastHit hitInfo;
 		RaycastHit[] hits;
 		hits = Physics.RaycastAll (ray, Mathf.Infinity);
-		if (GetComponent<Collider>().Raycast(ray, out hitInfo, Mathf.Infinity))
-        {
-            int x = Mathf.FloorToInt(hitInfo.point.x / _tileMap.tileSize);
-            int z = Mathf.FloorToInt(hitInfo.point.z / _tileMap.tileSize);
-            // Debug.Log("Tile: " + x + "," + z);
+		if (GetComponent<Collider> ().Raycast (ray, out hitInfo, Mathf.Infinity)) {
+			int x = Mathf.FloorToInt (hitInfo.point.x / _tileMap.tileSize);
+			int z = Mathf.FloorToInt (hitInfo.point.z / _tileMap.tileSize);
+			// Debug.Log("Tile: " + x + "," + z);
 
-            currentTileCoord.x = x;
-            currentTileCoord.z = z;
+			currentTileCoord.x = x;
+			currentTileCoord.z = z;
 
-            currentVisualCoord.x = currentTileCoord.x + 0.5f;
-            currentVisualCoord.z = currentTileCoord.z + 0.5f;
+			currentVisualCoord.x = currentTileCoord.x + 0.5f;
+			currentVisualCoord.z = currentTileCoord.z + 0.5f;
 
        
 
@@ -59,20 +59,20 @@ public class TileMapMouse : MonoBehaviour
 
 			if (hits.Length == 2) {
 
-					if (deleting) {
-						if (Input.GetMouseButtonDown (0)) {
-							Destroy (hitInfo.collider.gameObject);
-						}
+				if (deleting) {
+					if (Input.GetMouseButtonDown (0)) {
+						Destroy (hitInfo.collider.gameObject);
 					}
-				} 
-				else {
+				}
+			} else {
 				selectionHouse.transform.position = currentVisualCoord;
 				selectionCommerce.transform.position = currentVisualCoord;
 				selectionIndustrial.transform.position = currentVisualCoord;
 				selectionCityhall.transform.position = currentVisualCoord;
-					if (Input.GetMouseButtonDown (0)) {
+				if (Input.GetMouseButtonDown (0)) {
 
-						Debug.Log ("Tile: " + currentTileCoord.x + "," + currentTileCoord.z);
+					Debug.Log ("Tile: " + currentTileCoord.x + "," + currentTileCoord.z);
+					if (controller.getRoad (x, z) == 0){
 						if (select1) {
 							Instantiate (residential, new Vector3 (currentTileCoord.x + 0.5f, 0.0f, currentTileCoord.z + 0.5f), Quaternion.identity);
 						} else if (select2) {
@@ -82,38 +82,39 @@ public class TileMapMouse : MonoBehaviour
 						} else if (select4) {
 							Instantiate (cityhall, new Vector3 (currentTileCoord.x + 0.5f, 0.0f, currentTileCoord.z + 0.5f), Quaternion.identity);
 						}
-
+					}
+					if (selected != -1) {
+						controller.setRoad (deleting? 0 : selected, x, z);
 					}
 				}
 
 
 
 
-		
-			if (hitInfo.collider.gameObject.tag == "Building") {
+	
+				if (hitInfo.collider.gameObject.tag == "Building") {
+					
 				
+
+				} else {
+					
+
 			
-
+				}
 			}
-			else {
-				
-
-		
-			}
-        }
     
 
-		if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            select1 = false;
-            select2 = false;
-            select3 = false;
-			select4 = false;
-            selectionHouse.SetActive(false);
-            selectionCommerce.SetActive(false);
-            selectionIndustrial.SetActive(false);
-			selectionCityhall.SetActive (false);
-        }
+			if (Input.GetKeyDown (KeyCode.Escape)) {
+				select1 = false;
+				select2 = false;
+				select3 = false;
+				select4 = false;
+				selectionHouse.SetActive (false);
+				selectionCommerce.SetActive (false);
+				selectionIndustrial.SetActive (false);
+				selectionCityhall.SetActive (false);
+			}
+		}
     }
 
 
@@ -123,6 +124,7 @@ public class TileMapMouse : MonoBehaviour
         select2 = false;
         select3 = false;
 		select4 = false;
+		selected = -1;
         selectionHouse.SetActive(true);
         selectionCommerce.SetActive(false);
         selectionIndustrial.SetActive(false);
@@ -135,6 +137,7 @@ public class TileMapMouse : MonoBehaviour
         select2 = true;
         select3 = false;
 		select4 = false;
+		selected = -1;
         selectionHouse.SetActive(false);
         selectionCommerce.SetActive(true);
         selectionIndustrial.SetActive(false);
@@ -147,6 +150,7 @@ public class TileMapMouse : MonoBehaviour
         select2 = false;
         select3 = true;
 		select4 = false;
+		selected = -1;
         selectionHouse.SetActive(false);
         selectionCommerce.SetActive(false);
         selectionIndustrial.SetActive(true);
@@ -160,11 +164,44 @@ public class TileMapMouse : MonoBehaviour
 		select2 = false;
 		select3 = false;
 		select4 = true;
+		selected = -1;
 		selectionHouse.SetActive(false);
 		selectionCommerce.SetActive(false);
 		selectionIndustrial.SetActive(false);
 		selectionCityhall.SetActive (true);
 		Debug.Log("House 3 selected");
 	}
-
+	public void SelectSmall(){
+		select1 = false;
+		select2 = false;
+		select3 = false;
+		select4 = false;
+		selected = 1;
+		selectionHouse.SetActive(false);
+		selectionCommerce.SetActive(false);
+		selectionIndustrial.SetActive(false);
+		selectionCityhall.SetActive (false);
+	}
+	public void SelectMedium(){
+		select1 = false;
+		select2 = false;
+		select3 = false;
+		select4 = false;
+		selected = 2;
+		selectionHouse.SetActive(false);
+		selectionCommerce.SetActive(false);
+		selectionIndustrial.SetActive(false);
+		selectionCityhall.SetActive (false);
+	}
+	public void SelectLarge(){
+		select1 = false;
+		select2 = false;
+		select3 = false;
+		select4 = false;
+		selected = 3;
+		selectionHouse.SetActive(false);
+		selectionCommerce.SetActive(false);
+		selectionIndustrial.SetActive(false);
+		selectionCityhall.SetActive (false);
+	}
 }

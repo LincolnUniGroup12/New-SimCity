@@ -10,7 +10,7 @@ using UnityEngine;
 public class tileMap : MonoBehaviour {
     //number of tiles to create and their size
     public int size_x = 100;
-    public int size_z = 50;
+    public int size_z = 100;
     public float tileSize = 1.0f;
 
 	// Use this for initialization
