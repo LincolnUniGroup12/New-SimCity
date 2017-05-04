@@ -9,7 +9,8 @@ public class cityHall : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		scripts.GetComponent<cityStats>().happiness += 10;
+		GameObject scripts = GameObject.Find("_Scripts");
+		scripts.GetComponent<cityStats>().happiness += 6;
 	}
 	
 

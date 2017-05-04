@@ -16,7 +16,7 @@ public class InudstrialStatsController : MonoBehaviour {
 
 		GameObject scripts = GameObject.Find("_Scripts");
 		scripts.GetComponent<cityStats>().money -= cost;
-		scripts.GetComponent<cityStats>().happiness -= 1;
+		scripts.GetComponent<cityStats>().happiness -= 2;
 
         if (this.gameObject.activeInHierarchy)
         {

@@ -50,11 +50,11 @@ public class cityStats : MonoBehaviour {
 
 		if(happiness <= 30) {
 
-			population -= 0.01f * Time.deltaTime;
+			population -= 0.1f * Time.deltaTime;
 		}
 
 		if(happiness >= 60) {
-			population += 0.01f * Time.deltaTime;
+			population += 0.1f * Time.deltaTime;
 
 		}
 
@@ -94,9 +94,9 @@ public class cityStats : MonoBehaviour {
 		}
 		overallProfit.GetComponent<Text> ().text = "£" + profit;
 
-		happinessUI.GetComponent<Text> ().text = "Happiness: " + happiness; 
+		happinessUI.GetComponent<Text> ().text = "Happiness: " + (int)happiness; 
 		popUI.GetComponent<Text> ().text = "Population: " + (int)population; 
-		emprateUI.GetComponent<Text> ().text = "Employment Rate: " + percEmployed * 100 + "%"; 
+		emprateUI.GetComponent<Text> ().text = "Employment Rate: " + (int)(percEmployed * 100) + "%"; 
 
 	}
 
